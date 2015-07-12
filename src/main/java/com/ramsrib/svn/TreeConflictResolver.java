@@ -1,4 +1,4 @@
-package com.parser;
+package com.ramsrib.svn;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -41,8 +41,8 @@ public class TreeConflictResolver {
             - Run svn resolved for the file path (working copy conflict url)
      */
 
-    private final static String trunkPath = "/home/sriram/Projects/ctf-trunk-core-merge/";
-    private final static String branchPath = "/home/sriram/Projects/ctf-reorg-core-merge/";
+    private final static String trunkPath = "/tmp/my-trunk-wc/";
+    private final static String branchPath = "/tmp/my-branch1-wc/";
     private final static String[] SUPPORTED_FILE_TYPES = {".java", ".jsp", ".jspx", ".xml", ".css", ".js", ".tagx", ".wsdd"};
 
     private final static Map<String, File> trunkFileMap = new HashMap<>();
@@ -102,7 +102,7 @@ public class TreeConflictResolver {
     }
 
     private static void printInputStream(InputStream inputStream) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));) {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 log(line);
@@ -157,7 +157,7 @@ public class TreeConflictResolver {
 
         try (
                 InputStream inputStream = runCommand(command);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))
         ) {
 
             String line;
